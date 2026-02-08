@@ -11,6 +11,7 @@ const (
 
 func main() {
 	log.SetFlags(log.Lmicroseconds | log.Ltime)
+
 	for i := 0; i < ROUNTINES; i++ {
 		go countTask(i)
 	}
@@ -24,5 +25,4 @@ func countTask(id int) bool {
 	}
 
 	log.Printf("go routine %d has finished counting to 1000 \n", id)
-	return true
 }
