@@ -8,13 +8,13 @@
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-      {
-        packages.default = pkgs.callPackage ./projects/simple-http-service {};
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        packages = {
+          httpService = pkgs.callPackage ./projects/simple-http-service { };
+          experiments = pkgs.callPackage ./projects/experiments { };
+        };
         app.default = self.packages.${system}.default;
         devShells.default = self.packages.${system}.default;
-      }
-    );
+      });
 }
