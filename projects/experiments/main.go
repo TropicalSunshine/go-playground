@@ -1,20 +1,28 @@
 package main
 
 import (
-	"fmt"
+	"log"
+)
+
+const (
+	ROUNTINES = 10
+	TILL      = 1000000
 )
 
 func main() {
-	for i := 0; i < 10; i++ {
+	log.SetFlags(log.Lmicroseconds | log.Ltime)
+	for i := 0; i < ROUNTINES; i++ {
 		go countTask(i)
+	}
+	for {
 	}
 }
 
 // count to 1000
 func countTask(id int) bool {
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < TILL; i++ {
 	}
 
-	fmt.Printf("go routine %d", id)
+	log.Printf("go routine %d has finished counting to 1000 \n", id)
 	return true
 }
