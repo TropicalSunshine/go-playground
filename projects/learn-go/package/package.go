@@ -1,7 +1,15 @@
 package packagee
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
-func Packagee() {
+func Packagee(name string) (string, error) {
+
+	if name == "" {
+		return "", errors.New("empty name")
+	}
+
 	fmt.Println("packageee")
 }

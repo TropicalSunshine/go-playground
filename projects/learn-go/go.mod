@@ -19,4 +19,12 @@ go 1.24.2
 
 replace example.com/anothermod => ./anothermod
 
+// The command found the local code in the greetings directory,
+// then added a require directive to specify that example.com/hello requires example.com/greetings.
+// You created this dependency when you imported the greetings package in hello.go.
+// The number following the module path is a pseudo-version number -- a generated number used in place of a semantic version number (which the module doesn't have yet).
+
+// To reference a published module,
+// a go.mod file would typically omit the replace directive and use a require directive with a tagged version number at the end.
+// require example.com/greetings v1.1.0
 require example.com/anothermod v0.0.0-00010101000000-000000000000
