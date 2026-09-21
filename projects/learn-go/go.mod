@@ -15,7 +15,7 @@
 // and test with the new version before putting it into production use.
 module learn-go
 
-go 1.24.2
+go 1.25
 
 replace example.com/anothermod => ./anothermod
 

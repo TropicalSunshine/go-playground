@@ -12,4 +12,5 @@ func Packagee(name string) (string, error) {
 	}
 
 	fmt.Println("packageee")
+	return "test", errors.New("empty name")
 }

@@ -8,6 +8,6 @@ import (
 )
 
 func main() {
-	packagee.Packagee()
+	packagee.Packagee("name")
 	anothermod.AnotherMod()
 }

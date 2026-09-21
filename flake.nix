@@ -6,15 +6,28 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-      in {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
         packages = {
           httpService = pkgs.callPackage ./projects/simple-http-service { };
           experiments = pkgs.callPackage ./projects/experiments { };
+          default = pkgs.callPackage ./projects/learn-go { };
         };
-        app.default = self.packages.${system}.default;
+        apps.${system}.default = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/learn-go";
+        };
         devShells.default = self.packages.${system}.default;
-      });
+      }
+    );
 }
